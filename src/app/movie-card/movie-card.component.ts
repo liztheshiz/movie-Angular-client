@@ -8,11 +8,13 @@ import { FetchApiDataService } from '../fetch-api-data.service'
 })
 export class MovieCardComponent implements OnInit {
     movies: any[] = [];
+    favMovies: any[] = [];
     constructor(public fetchApiData: FetchApiDataService) { }
 
     // Called when Angular is done creating component
     ngOnInit(): void {
         this.getMovies();
+        this.getFavorites();
     }
 
     getMovies(): void {
@@ -23,4 +25,14 @@ export class MovieCardComponent implements OnInit {
         });
     }
 
+    getFavorites(): void {
+        this.fetchApiData.getUser().subscribe((resp: any) => {
+            this.favMovies = resp.FavoriteMovies;
+            return this.favMovies;
+        });
+    }
+
+    isFavorite(id: Number): Boolean {
+        return this.favMovies.includes(id);
+    }
 }
