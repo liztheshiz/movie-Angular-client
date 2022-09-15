@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 // Material components
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +21,12 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
+const appRoutes: Routes = [
+    { path: 'welcome', component: WelcomePageComponent },
+    { path: 'movies', component: MovieCardComponent },
+    { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -33,6 +40,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        RouterModule.forRoot(appRoutes),
         FormsModule,
         MatInputModule,
         MatButtonModule,
