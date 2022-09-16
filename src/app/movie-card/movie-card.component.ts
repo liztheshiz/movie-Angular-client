@@ -13,6 +13,7 @@ export class MovieCardComponent implements OnInit {
 
     // Called when Angular is done creating component
     ngOnInit(): void {
+        console.log('init called');
         this.getMovies();
         this.getFavorites();
     }
@@ -29,6 +30,23 @@ export class MovieCardComponent implements OnInit {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.favMovies = resp.FavoriteMovies;
             return this.favMovies;
+        });
+    }
+
+    addToFavorites(movieId: String): void {
+        console.log(`adding ${movieId}`);
+        this.fetchApiData.addToFavorites(movieId).subscribe((resp: any) => {
+            console.log(`add resp: ${resp}`);
+            this.ngOnInit();
+        });
+    }
+
+    removeFromFavorites(movieId: String): void {
+        console.log(`deleting ${movieId}`);
+        this.fetchApiData.deleteFromFavorites(movieId).subscribe((resp: any) => {
+            console.log(`delete resp: ${resp}`);
+            //this.ngOnInit();
+            location.reload();
         });
     }
 
