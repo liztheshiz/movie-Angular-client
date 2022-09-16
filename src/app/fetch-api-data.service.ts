@@ -20,12 +20,6 @@ export class FetchApiDataService {
     constructor(private http: HttpClient) {
     }
 
-    // Extracts response data from HTTP response
-    private extractResponseData(res: Object): any { // changed type Response to Object
-        const body = res;
-        return body || {};
-    }
-
     // Posts new user data to the database
     public userRegistration(userDetails: any): Observable<any> {
         console.log(userDetails);
@@ -154,6 +148,7 @@ export class FetchApiDataService {
     public deleteFromFavorites(movieId: String): Observable<any> {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
+        console.log('about to call http delete');
         return this.http.delete(apiUrl + 'users/' + user + '/FavoriteMovies/' + movieId, {
             headers: new HttpHeaders(
                 {
@@ -162,6 +157,12 @@ export class FetchApiDataService {
         }).pipe(
             catchError(this.handleError)
         );
+    }
+
+    // Extracts response data from HTTP response
+    private extractResponseData(res: Object): any { // changed type Response to Object
+        const body = res;
+        return body || {};
     }
 
     // Error handling
