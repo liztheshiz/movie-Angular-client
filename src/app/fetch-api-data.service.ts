@@ -48,7 +48,7 @@ export class FetchApiDataService {
         return this.http.get(apiUrl + 'movies', {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             map(this.extractResponseData),
@@ -62,7 +62,7 @@ export class FetchApiDataService {
         return this.http.get(apiUrl + 'movies/' + movieTitle, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -75,7 +75,7 @@ export class FetchApiDataService {
         return this.http.get(apiUrl + 'movies/directors/' + directorName, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -88,7 +88,7 @@ export class FetchApiDataService {
         return this.http.get(apiUrl + 'movies/genres/' + genreName, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -102,7 +102,7 @@ export class FetchApiDataService {
         return this.http.get(apiUrl + 'users/' + user, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -110,13 +110,13 @@ export class FetchApiDataService {
     }
 
     // Add movie to user's favorites list, by movieID
-    public addToFavorites(movieId: Number): Observable<any> {
+    public addToFavorites(movieId: String): Observable<any> {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-        return this.http.post(apiUrl + 'users/' + user + '/FavoriteMovies/' + movieId, {
+        return this.http.post(apiUrl + 'users/' + user + '/FavoriteMovies/' + movieId, {}, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -130,7 +130,7 @@ export class FetchApiDataService {
         return this.http.put(apiUrl + 'users/' + username, userDetails, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -143,7 +143,7 @@ export class FetchApiDataService {
         return this.http.delete(apiUrl + 'users/' + username, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
@@ -151,13 +151,13 @@ export class FetchApiDataService {
     }
 
     // Deletes a movie from user's list of favorites
-    public deleteFromFavorites(movieId: Number): Observable<any> {
+    public deleteFromFavorites(movieId: String): Observable<any> {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
         return this.http.delete(apiUrl + 'users/' + user + '/FavoriteMovies/' + movieId, {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + token
                 })
         }).pipe(
             catchError(this.handleError)
