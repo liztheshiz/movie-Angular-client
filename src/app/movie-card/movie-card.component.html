@@ -1,5 +1,5 @@
-<div class="movie-card">
-    <mat-card class="movie-card__card" *ngFor="let movie of movies;">
+<div class="movie-view">
+    <mat-card class="movie-card" *ngFor="let movie of movies;">
         <mat-card-header>
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Directed by: <button mat-button color="primary">{{movie.Director.Name}}</button>

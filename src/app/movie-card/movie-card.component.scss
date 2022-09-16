@@ -1,13 +1,33 @@
-.movie-card {
-    display: flex;
+.movie-view {
+    display: grid;
     margin-top: 100px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    background-color: palegoldenrod;
+    margin-top: 0;
+    padding: 50px;
 }
 
-.movie-card__card {
-    flex: 1 1 auto;
-    //width: 400px;
+.movie-card {
+    //flex: 1 1 auto;
+    align-self: center;
+    justify-self: center;
+    width: 270px;
 }
 
 .movie-poster {
-    width: 300px;
+    width: 270px;
+}
+
+@media all and (max-width: 1020px) {
+    .movie-view {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (max-width: 730px) {
+    .movie-view {
+        grid-template-columns: 1fr;
+        padding: 30px 0px;
+    }
 }
