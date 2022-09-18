@@ -1,4 +1,6 @@
-<mat-toolbar color="primary">MyFlix</mat-toolbar>
+<mat-toolbar color="primary"><span>MyFlix</span><span class="spacer"></span>
+    <button mat-button color="secondary">Logout</button>
+</mat-toolbar>
 <mat-spinner class="spinner" *ngIf="movies.length<1"></mat-spinner>
 <div class="movie-view">
     <mat-card class="movie-card" *ngFor="let movie of movies;">
