@@ -24,6 +24,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
         UserLoginFormComponent,
         MovieCardComponent,
         WelcomePageComponent,
-        DirectorViewComponent
+        DirectorViewComponent,
+        GenreViewComponent
     ],
     imports: [
         BrowserModule,

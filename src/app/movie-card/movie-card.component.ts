@@ -65,4 +65,13 @@ export class MovieCardComponent implements OnInit {
             width: '280px'
         });
     }
+
+    openGenreView(genre: Object): void {
+        this.dialog.open(GenreViewComponent, {
+            data: {
+                Genre: genre
+            },
+            width: '280px'
+        });
+    }
 }
