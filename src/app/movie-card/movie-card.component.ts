@@ -5,6 +5,8 @@ import { DirectorViewComponent } from '../director-view/director-view.component'
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { MatDialog } from '@angular/material/dialog';
 
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie-card.component.html',
@@ -13,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class MovieCardComponent implements OnInit {
     movies: any[] = [];
     favMovies: any[] = [];
-    constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog) { }
+    constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public router: Router) { }
 
     // Called when Angular is done creating component
     ngOnInit(): void {
@@ -74,5 +76,11 @@ export class MovieCardComponent implements OnInit {
             },
             width: '280px'
         });
+    }
+
+    logout(): void {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        this.router.navigate(['welcome']);
     }
 }

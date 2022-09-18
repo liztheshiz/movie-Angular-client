@@ -1,5 +1,5 @@
 <mat-toolbar color="primary"><span>MyFlix</span><span class="spacer"></span>
-    <button mat-button color="secondary">Logout</button>
+    <button mat-button (click)="logout()" color="secondary">Logout</button>
 </mat-toolbar>
 <mat-spinner class="spinner" *ngIf="movies.length<1"></mat-spinner>
 <div class="movie-view">
