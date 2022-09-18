@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service'
+import { FetchApiDataService } from '../fetch-api-data.service';
+
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-movie-card',
@@ -9,7 +11,7 @@ import { FetchApiDataService } from '../fetch-api-data.service'
 export class MovieCardComponent implements OnInit {
     movies: any[] = [];
     favMovies: any[] = [];
-    constructor(public fetchApiData: FetchApiDataService) { }
+    constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog) { }
 
     // Called when Angular is done creating component
     ngOnInit(): void {
@@ -52,5 +54,11 @@ export class MovieCardComponent implements OnInit {
 
     isFavorite(id: Number): Boolean {
         return this.favMovies.includes(id);
+    }
+
+    openDirectorView(): void {
+        this.dialog.open(DirectorViewComponent, {
+            width: '280px'
+        });
     }
 }
