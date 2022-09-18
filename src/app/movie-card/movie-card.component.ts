@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
+import { DirectorViewComponent } from '../director-view/director-view.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -56,8 +57,11 @@ export class MovieCardComponent implements OnInit {
         return this.favMovies.includes(id);
     }
 
-    openDirectorView(): void {
+    openDirectorView(director: Object): void {
         this.dialog.open(DirectorViewComponent, {
+            data: {
+                Director: director
+            },
             width: '280px'
         });
     }
