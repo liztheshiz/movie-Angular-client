@@ -4,11 +4,12 @@
 
 .movie-view {
     display: grid;
-    margin-top: 100px;
+    margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     margin-top: 0;
     padding: 50px;
+    width: 85%;
 }
 
 .spinner {
@@ -17,7 +18,6 @@
 }
 
 .movie-card {
-    //flex: 1 1 auto;
     align-self: center;
     justify-self: center;
     width: 270px;
