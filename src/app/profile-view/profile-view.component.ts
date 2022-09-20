@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class ProfileViewComponent implements OnInit {
     user: any = {};
+    movies: any[] = [];
+    favMovies: any[] = [];
     editMode: Boolean = false;
 
     // Defines component's input
@@ -21,13 +23,32 @@ export class ProfileViewComponent implements OnInit {
 
     ngOnInit(): void {
         this.getUser();
+        this.getMovies();
+        this.getFavorites();
     }
 
     getUser(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.user = resp;
+            console.log('fetched user:');
             console.log(this.user);
             return this.user;
+        });
+    }
+
+    getMovies(): void {
+        this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+            this.movies = resp;
+            return this.movies;
+        });
+    }
+
+    getFavorites(): void {
+        this.fetchApiData.getUser().subscribe((resp: any) => {
+            this.favMovies = resp.FavoriteMovies;
+            console.log('fetched faves:')
+            console.log(this.favMovies);
+            return this.favMovies;
         });
     }
 
@@ -52,6 +73,13 @@ export class ProfileViewComponent implements OnInit {
             localStorage.setItem('user', result.Username);
             this.ngOnInit();
             this.toggleEditMode();
+        });
+    }
+
+    removeFromFavorites(movieId: String): void {
+        console.log(`deleting ${movieId}`);
+        this.fetchApiData.deleteFromFavorites(movieId).subscribe((resp: any) => {
+            this.ngOnInit();
         });
     }
 

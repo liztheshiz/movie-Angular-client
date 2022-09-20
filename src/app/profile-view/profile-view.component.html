@@ -58,4 +58,15 @@
     <button *ngIf="editMode" mat-raised-button (click)="handleUpdate()" color="primary">
         Update
     </button>
+    <div class="fav-movies">
+        <h2>Favorite Films:</h2>
+        <div *ngFor="let movie of movies;">
+            <div class="fav-movies__movie" *ngIf="favMovies.includes(movie._id)">
+                <h3>{{movie.Title}}</h3>
+                <button class="favorite" mat-button (click)="removeFromFavorites(movie._id)" color="primary">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
