@@ -17,8 +17,11 @@
         <mat-form-field class="form__field">
             <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email" disabled>
         </mat-form-field>
-        <mat-form-field class="form__field">
-            <input matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday" name="Birthday" disabled>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Birthday</mat-label>
+            <input *ngIf="!user.Birthday" matInput placeholder="None" name="Birthday" disabled>
+            <input *ngIf="user.Birthday" matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday"
+                name="Birthday" disabled>
         </mat-form-field>
     </form>
     <form *ngIf="editMode" class="form">
