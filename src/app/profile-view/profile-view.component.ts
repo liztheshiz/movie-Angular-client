@@ -10,10 +10,20 @@ import { Router } from '@angular/router';
     styleUrls: ['./profile-view.component.scss']
 })
 export class ProfileViewComponent implements OnInit {
-    user: any = localStorage.getItem('user');
+    username: any = localStorage.getItem('user');
+    user: any = {};
     constructor(public fetchApiData: FetchApiDataService, public router: Router) { }
 
     ngOnInit(): void {
+        this.getUser();
+    }
+
+    getUser(): void {
+        this.fetchApiData.getUser().subscribe((resp: any) => {
+            this.user = resp;
+            console.log(this.user);
+            return this.user;
+        });
     }
 
     openMovieView(): void {

@@ -1,11 +1,25 @@
 <mat-toolbar color="primary"><span><button mat-button (click)="openMovieView()" color="secondary">MyFlix</button></span>
     <span class="spacer"></span>
-    <span>{{user}}</span>
+    <span>{{username}}</span>
     <button mat-button (click)="logout()" color="secondary">Logout</button>
 </mat-toolbar>
 <div class="profile-view">
-    <h1>
-        {{user}}'s profile
-    </h1>
-
+    <h1>{{username}}'s Profile</h1>
+    <form>
+        <mat-form-field>
+            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="user.Password" type="password" placeholder="Password" name="Password" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday" name="Birthday">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary">
+        Login
+    </button>
 </div>
