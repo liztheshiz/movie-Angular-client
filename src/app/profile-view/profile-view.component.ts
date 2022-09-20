@@ -26,7 +26,6 @@ export class ProfileViewComponent implements OnInit {
     getUser(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.user = resp;
-            console.log(this.userData);
             console.log(this.user);
             return this.user;
         });
@@ -34,7 +33,7 @@ export class ProfileViewComponent implements OnInit {
 
     toggleEditMode(): void {
         this.editMode = !this.editMode;
-        this.userData = { Username: '', Password: '', Email: '', Birthday: '' };
+        this.userData = { Username: '', Password: '', Email: '', Birthday: '' }; // clear any inputted data when user cancels
     }
 
     handleUpdate(): void {
