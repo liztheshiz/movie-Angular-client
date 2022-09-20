@@ -1,1 +1,11 @@
-<p>profile-view works!</p>
+<mat-toolbar color="primary"><span><button mat-button (click)="openMovieView()" color="secondary">MyFlix</button></span>
+    <span class="spacer"></span>
+    <span>{{user}}</span>
+    <button mat-button (click)="logout()" color="secondary">Logout</button>
+</mat-toolbar>
+<div class="profile-view">
+    <h1>
+        {{user}}'s profile
+    </h1>
+
+</div>
