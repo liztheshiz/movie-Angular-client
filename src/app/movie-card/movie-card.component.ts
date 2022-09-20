@@ -85,6 +85,10 @@ export class MovieCardComponent implements OnInit {
         });
     }
 
+    openMovieView(): void {
+        this.router.navigate(['movies']);
+    }
+
     openProfileView(): void {
         this.router.navigate(['profile']);
     }

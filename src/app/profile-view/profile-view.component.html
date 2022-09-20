@@ -1,6 +1,6 @@
-<mat-toolbar color="primary"><span><button mat-button (click)="openMovieView()" color="secondary">MyFlix</button></span>
-    <span class="spacer"></span>
-    <span>{{user.Username}}</span>
+<mat-toolbar color="primary"><span>MyFlix</span><span class="spacer"></span>
+    <button mat-button (click)="openMovieView()" color="secondary">Home</button>
+    <button mat-button (click)="openProfileView()" color="secondary">{{user.Username}}</button>
     <button mat-button (click)="logout()" color="secondary">Logout</button>
 </mat-toolbar>
 <div class="profile-view">
