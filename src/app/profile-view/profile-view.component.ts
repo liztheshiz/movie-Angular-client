@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 import { Router } from '@angular/router';
@@ -10,14 +11,13 @@ import { Router } from '@angular/router';
     styleUrls: ['./profile-view.component.scss']
 })
 export class ProfileViewComponent implements OnInit {
-    username: any = localStorage.getItem('user');
     user: any = {};
     editMode: Boolean = false;
 
     // Defines component's input
     @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' }
 
-    constructor(public fetchApiData: FetchApiDataService, public router: Router) { }
+    constructor(public fetchApiData: FetchApiDataService, public snackBar: MatSnackBar, public router: Router) { }
 
     ngOnInit(): void {
         this.getUser();
@@ -38,6 +38,21 @@ export class ProfileViewComponent implements OnInit {
 
     handleUpdate(): void {
         console.log(this.userData);
+        var newUser = this.userData;
+        var birthday = `${this.userData.Birthday.charAt(5)}${this.userData.Birthday.charAt(6)}/${this.userData.Birthday.charAt(8)}${this.userData.Birthday.charAt(9)}/${this.userData.Birthday.charAt(2)}${this.userData.Birthday.charAt(3)}`;
+        if (birthday != '//') {
+            newUser.Birthday = birthday;
+        }
+        console.log(newUser);
+        this.fetchApiData.editUser(this.user.Username, this.userData).subscribe((result) => {
+            console.log(result);
+            this.snackBar.open('Successfully updated profile!', 'OK', {
+                duration: 2000
+            });
+            localStorage.setItem('user', result.Username);
+            this.ngOnInit();
+            this.toggleEditMode();
+        });
     }
 
     openMovieView(): void {
