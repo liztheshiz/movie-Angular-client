@@ -51,8 +51,7 @@ export class MovieCardComponent implements OnInit {
         console.log(`deleting ${movieId}`);
         this.fetchApiData.deleteFromFavorites(movieId).subscribe((resp: any) => {
             console.log(`delete resp: ${resp}`);
-            //this.ngOnInit();
-            location.reload();
+            this.ngOnInit();
         });
     }
 
