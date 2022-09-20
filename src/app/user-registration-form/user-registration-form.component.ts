@@ -26,7 +26,14 @@ export class UserRegistrationFormComponent implements OnInit {
 
     // Passes userData object into API
     registerUser(): void {
-        this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
+        // Changes birthday to right format MM/DD/YY before sending to API
+        var newUser = this.userData;
+        var birthday = `${this.userData.Birthday.charAt(5)}${this.userData.Birthday.charAt(6)}/${this.userData.Birthday.charAt(8)}${this.userData.Birthday.charAt(9)}/${this.userData.Birthday.charAt(2)}${this.userData.Birthday.charAt(3)}`;
+        if (birthday != '//') {
+            newUser.Birthday = birthday;
+        }
+
+        this.fetchApiData.userRegistration(newUser).subscribe((result) => {
             // Logic for a successful user registration goes here! (To be implemented)
             this.dialogRef.close(); // This will close the modal on success!
             console.log(result);
