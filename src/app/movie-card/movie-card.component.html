@@ -15,7 +15,7 @@
             <button mat-button (click)="openGenreView(movie.Genre)" color="primary">
                 Genre
             </button>
-            <button mat-button color="primary">
+            <button mat-button (click)="openSynopsisView(movie)" color="primary">
                 Synopsis
             </button>
             <button class="favorite" mat-button *ngIf="!isFavorite(movie._id)" (click)="addToFavorites(movie._id)"

@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
+import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Router } from '@angular/router';
@@ -72,6 +73,15 @@ export class MovieCardComponent implements OnInit {
         this.dialog.open(GenreViewComponent, {
             data: {
                 Genre: genre
+            },
+            width: '280px'
+        });
+    }
+
+    openSynopsisView(movie: Object): void {
+        this.dialog.open(SynopsisViewComponent, {
+            data: {
+                Movie: movie
             },
             width: '280px'
         });
