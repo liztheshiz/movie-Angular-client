@@ -36,7 +36,7 @@ export class UserLoginFormComponent implements OnInit {
             this.router.navigate(['movies']);
         }, (result) => {
             console.log(result);
-            this.snackBar.open(result, 'OK', {
+            this.snackBar.open('You are now logged in', 'OK', {
                 duration: 2000
             });
         });
