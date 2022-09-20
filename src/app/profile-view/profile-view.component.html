@@ -7,36 +7,46 @@
     <h1>{{username}}'s Profile</h1>
     <h2 *ngIf="editMode">Edit user details below</h2>
     <form *ngIf="!editMode" class="form">
-        <mat-form-field class="form__field">
-            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username" disabled>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="userData.Username" placeholder="{{this.user.Username}}" type="text"
+                name="Username" disabled>
         </mat-form-field>
         <mat-form-field class="form__field" floatLabel="always">
             <mat-label>Password</mat-label>
-            <input matInput (ngModel)="user.Password" type="password" placeholder="Hidden" name="Password" disabled>
+            <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Hidden" name="Password"
+                disabled>
         </mat-form-field>
-        <mat-form-field class="form__field">
-            <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email" disabled>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="userData.Email" type="email" placeholder="{{this.user.Email}}" name="Email"
+                disabled>
         </mat-form-field>
         <mat-form-field class="form__field" floatLabel="always">
             <mat-label>Birthday</mat-label>
             <input *ngIf="!user.Birthday" matInput placeholder="None" name="Birthday" disabled>
-            <input *ngIf="user.Birthday" matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday"
-                name="Birthday" disabled>
+            <input *ngIf="user.Birthday" matInput [(ngModel)]="userData.Birthday" type="date"
+                placeholder="{{this.user.Birthday}}" name="Birthday" disabled>
         </mat-form-field>
     </form>
     <form *ngIf="editMode" class="form">
-        <mat-form-field class="form__field">
-            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username">
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="userData.Username" placeholder="{{this.user.Username}}" type="text"
+                name="Username">
         </mat-form-field>
         <mat-form-field class="form__field" floatLabel="always">
             <mat-label>Password</mat-label>
-            <input matInput (ngModel)="user.Password" type="password" placeholder="Hidden" name="Password">
+            <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Hidden" name="Password">
         </mat-form-field>
-        <mat-form-field class="form__field">
-            <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email">
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="userData.Email" type="email" placeholder="{{this.user.Email}}" name="Email">
         </mat-form-field>
-        <mat-form-field class="form__field">
-            <input matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday" name="Birthday">
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Birthday</mat-label>
+            <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="{{this.user.Birthday}}"
+                name="Birthday">
         </mat-form-field>
     </form>
     <button *ngIf="!editMode" mat-raised-button (click)="toggleEditMode()" color="primary">
@@ -45,7 +55,7 @@
     <button class="cancel-button" *ngIf="editMode" mat-raised-button (click)="toggleEditMode()" color="secondary">
         Cancel
     </button>
-    <button *ngIf="editMode" mat-raised-button color="primary">
+    <button *ngIf="editMode" mat-raised-button (click)="handleUpdate()" color="primary">
         Update
     </button>
 </div>

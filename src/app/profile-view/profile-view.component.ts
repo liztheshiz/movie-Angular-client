@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -13,6 +13,10 @@ export class ProfileViewComponent implements OnInit {
     username: any = localStorage.getItem('user');
     user: any = {};
     editMode: Boolean = false;
+
+    // Defines component's input
+    @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' }
+
     constructor(public fetchApiData: FetchApiDataService, public router: Router) { }
 
     ngOnInit(): void {
@@ -22,6 +26,7 @@ export class ProfileViewComponent implements OnInit {
     getUser(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.user = resp;
+            console.log(this.userData);
             console.log(this.user);
             return this.user;
         });
@@ -29,6 +34,11 @@ export class ProfileViewComponent implements OnInit {
 
     toggleEditMode(): void {
         this.editMode = !this.editMode;
+        this.userData = { Username: '', Password: '', Email: '', Birthday: '' };
+    }
+
+    handleUpdate(): void {
+        console.log(this.userData);
     }
 
     openMovieView(): void {
