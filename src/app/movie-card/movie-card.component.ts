@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class MovieCardComponent implements OnInit {
     movies: any[] = [];
     favMovies: any[] = [];
+    user: any = localStorage.getItem('user');
     constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public router: Router) { }
 
     // Called when Angular is done creating component
@@ -85,6 +86,10 @@ export class MovieCardComponent implements OnInit {
             },
             width: '280px'
         });
+    }
+
+    openProfileView(): void {
+        this.router.navigate(['profile']);
     }
 
     logout(): void {
