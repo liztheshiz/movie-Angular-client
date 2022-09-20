@@ -5,21 +5,44 @@
 </mat-toolbar>
 <div class="profile-view">
     <h1>{{username}}'s Profile</h1>
-    <form>
-        <mat-form-field>
-            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username" required>
+    <h2 *ngIf="editMode">Edit user details below</h2>
+    <form *ngIf="!editMode" class="form">
+        <mat-form-field class="form__field">
+            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username" disabled>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput [(ngModel)]="user.Password" type="password" placeholder="Password" name="Password" required>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Password</mat-label>
+            <input matInput (ngModel)="user.Password" type="password" placeholder="Hidden" name="Password" disabled>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email" required>
+        <mat-form-field class="form__field">
+            <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email" disabled>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="form__field">
+            <input matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday" name="Birthday" disabled>
+        </mat-form-field>
+    </form>
+    <form *ngIf="editMode" class="form">
+        <mat-form-field class="form__field">
+            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username">
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Password</mat-label>
+            <input matInput (ngModel)="user.Password" type="password" placeholder="Hidden" name="Password">
+        </mat-form-field>
+        <mat-form-field class="form__field">
+            <input matInput [(ngModel)]="user.Email" type="email" placeholder="Email" name="Email">
+        </mat-form-field>
+        <mat-form-field class="form__field">
             <input matInput [(ngModel)]="user.Birthday" type="date" placeholder="Birthday" name="Birthday">
         </mat-form-field>
     </form>
-    <button mat-raised-button color="primary">
-        Login
+    <button *ngIf="!editMode" mat-raised-button (click)="toggleEditMode()" color="primary">
+        Edit user details
+    </button>
+    <button class="cancel-button" *ngIf="editMode" mat-raised-button (click)="toggleEditMode()" color="secondary">
+        Cancel
+    </button>
+    <button *ngIf="editMode" mat-raised-button color="primary">
+        Update
     </button>
 </div>

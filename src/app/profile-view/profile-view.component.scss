@@ -14,6 +14,21 @@
     margin-bottom: 60px;
 }
 
-.test {
-    margin-right: 30px;
+.profile-view h2 {
+    margin-bottom: 30px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.form__field {
+    margin-bottom: 20px;
+}
+
+.cancel-button {
+    margin-right: 20px;
 }

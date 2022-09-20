@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ProfileViewComponent implements OnInit {
     username: any = localStorage.getItem('user');
     user: any = {};
+    editMode: Boolean = false;
     constructor(public fetchApiData: FetchApiDataService, public router: Router) { }
 
     ngOnInit(): void {
@@ -24,6 +25,10 @@ export class ProfileViewComponent implements OnInit {
             console.log(this.user);
             return this.user;
         });
+    }
+
+    toggleEditMode(): void {
+        this.editMode = !this.editMode;
     }
 
     openMovieView(): void {
