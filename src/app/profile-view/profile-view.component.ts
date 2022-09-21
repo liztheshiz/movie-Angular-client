@@ -14,6 +14,7 @@ export class ProfileViewComponent implements OnInit {
     user: any = {};
     movies: any[] = [];
     favMovies: any[] = [];
+    birthday: any = '';
     editMode: Boolean = false;
 
     // Defines component's input
@@ -32,6 +33,7 @@ export class ProfileViewComponent implements OnInit {
             this.user = resp;
             console.log('fetched user:');
             console.log(this.user);
+            this.getDate(this.user.Birthday);
             return this.user;
         });
     }
@@ -46,10 +48,14 @@ export class ProfileViewComponent implements OnInit {
     getFavorites(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.favMovies = resp.FavoriteMovies;
-            console.log('fetched faves:')
-            console.log(this.favMovies);
             return this.favMovies;
         });
+    }
+
+    getDate(string: Date) {
+        var date = new Date(string);
+        var newDate = date.toLocaleDateString('en-us', { timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric' });
+        this.birthday = newDate;
     }
 
     toggleEditMode(): void {
@@ -58,14 +64,17 @@ export class ProfileViewComponent implements OnInit {
     }
 
     handleUpdate(): void {
+        console.log('userData:')
         console.log(this.userData);
         var newUser = this.userData;
         var birthday = `${this.userData.Birthday.charAt(5)}${this.userData.Birthday.charAt(6)}/${this.userData.Birthday.charAt(8)}${this.userData.Birthday.charAt(9)}/${this.userData.Birthday.charAt(2)}${this.userData.Birthday.charAt(3)}`;
         if (birthday != '//') {
             newUser.Birthday = birthday;
         }
+        console.log('newUser:')
         console.log(newUser);
         this.fetchApiData.editUser(this.user.Username, this.userData).subscribe((result) => {
+            console.log('result of request:');
             console.log(result);
             this.snackBar.open('Successfully updated profile!', 'OK', {
                 duration: 2000

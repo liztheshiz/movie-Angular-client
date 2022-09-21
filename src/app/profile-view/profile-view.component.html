@@ -25,8 +25,7 @@
         <mat-form-field class="form__field" floatLabel="always">
             <mat-label>Birthday</mat-label>
             <input *ngIf="!user.Birthday" matInput placeholder="None" name="Birthday" disabled>
-            <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="{{this.user.Birthday}}"
-                name="Birthday" disabled>
+            <input matInput [(ngModel)]="userData.Birthday" placeholder="{{this.birthday}}" name="Birthday" disabled>
         </mat-form-field>
     </form>
     <form *ngIf="editMode" class="form">
@@ -45,8 +44,8 @@
         </mat-form-field>
         <mat-form-field class="form__field" floatLabel="always">
             <mat-label>Birthday</mat-label>
-            <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="{{this.user.Birthday}}"
-                name="Birthday">
+            <input matInput [(ngModel)]="userData.Birthday" type="text" placeholder="{{this.birthday}}" name="Birthday"
+                onfocus="(this.type='date')">
         </mat-form-field>
     </form>
     <button *ngIf="!editMode" mat-raised-button (click)="toggleEditMode()" color="primary">
