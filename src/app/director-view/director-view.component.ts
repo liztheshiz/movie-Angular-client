@@ -16,7 +16,11 @@ export class DirectorViewComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    // Converts complex date string into simple four-digit year string
+    /** 
+     * Converts complex date string into simple four-digit year string
+     * @param string - date object string
+     * @returns Four-digit year string
+    */
     getYear(string: Date) {
         let date = new Date(string);
         return date.getFullYear();
