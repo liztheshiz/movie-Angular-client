@@ -25,6 +25,10 @@ export class MovieCardComponent implements OnInit {
         this.getFavorites();
     }
 
+    /** 
+     * Fetches movies using fetch-api-data and sets local 'movies' variable to resulting array of movies objects.
+     * Returns 'movies' variable.
+    */
     getMovies(): void {
         this.fetchApiData.getAllMovies().subscribe((resp: any) => {
             this.movies = resp;
@@ -33,6 +37,10 @@ export class MovieCardComponent implements OnInit {
         });
     }
 
+    /**
+     * Fetches user object by username in localStorage using fetch-api-data, and sets local 'favMovies' variable to result's 'FavoriteMovies' propery.
+     * Returns 'favMovies' variable.
+     */
     getFavorites(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.favMovies = resp.FavoriteMovies;
@@ -40,6 +48,11 @@ export class MovieCardComponent implements OnInit {
         });
     }
 
+    /**
+     * Adds given movie to current user's favorites, as determined by username in localStorage. 
+     * Uses fetch-api-data to post.
+     * @param movieId - string type movieID from database entry
+     */
     addToFavorites(movieId: String): void {
         console.log(`adding ${movieId}`);
         this.fetchApiData.addToFavorites(movieId).subscribe((resp: any) => {
@@ -47,6 +60,11 @@ export class MovieCardComponent implements OnInit {
         });
     }
 
+    /**
+     * Removes given movie from current user's favorites, as determined by username in localStorage. 
+     * Uses fetch-api-data to delete.
+     * @param movieId - string type movieId from database entry
+     */
     removeFromFavorites(movieId: String): void {
         console.log(`deleting ${movieId}`);
         this.fetchApiData.deleteFromFavorites(movieId).subscribe((resp: any) => {
@@ -54,6 +72,11 @@ export class MovieCardComponent implements OnInit {
         });
     }
 
+    /**
+     * Tests whether or not a given movie is included in current list of favorites, stored in local variable 'favMovies'.
+     * @param id - string type movieId from database entry
+     * @returns Boolean representing whether movie is in list of favorites
+     */
     isFavorite(id: Number): Boolean {
         return this.favMovies.includes(id);
     }
