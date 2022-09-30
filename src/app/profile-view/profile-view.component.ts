@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
     templateUrl: './profile-view.component.html',
     styleUrls: ['./profile-view.component.scss']
 })
+/**
+ * This component comprises the page generated when the user clicks on their username in the navbar, 
+ * where they can change their details and view/edit their favorites list.
+ */
 export class ProfileViewComponent implements OnInit {
     user: any = {};
     movies: any[] = [];
@@ -54,6 +58,10 @@ export class ProfileViewComponent implements OnInit {
         });
     }
 
+    /**
+     * Fetches user object by username in localStorage using fetch-api-data, and sets local 'favMovies' variable to result's 'FavoriteMovies' propery.
+     * Returns 'favMovies' variable.
+     */
     getFavorites(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.favMovies = resp.FavoriteMovies;
@@ -61,17 +69,32 @@ export class ProfileViewComponent implements OnInit {
         });
     }
 
+    /**
+     * Takes a date string and converts it to a string with format 'mm-dd-yyyy'. 
+     * Sets local 'birthday' variable to this new string.
+     * @param string - date object string
+     */
     getDate(string: Date) {
         var date = new Date(string);
         var newDate = date.toLocaleDateString('en-us', { timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric' });
         this.birthday = newDate;
     }
 
+    /**
+     * Toggles edit mode on and off by toggling local 'editMode variable'. 
+     * Also clears local 'userData' variable so previously inputted data is cleared when editing is cancelled.
+     */
     toggleEditMode(): void {
         this.editMode = !this.editMode;
         this.userData = { Username: '', Password: '', Email: '', Birthday: '' }; // clear any inputted data when user cancels
     }
 
+    /**
+     * Posts new user details entered by the user to their user entry in the database. 
+     * Converts Angular's birthday form string to a format acceptable by the API ('mm/dd/yy') 
+     * and then posts using fetch-api-data. Saves new username in localStorage. 
+     * ngOnInit() is called and editMode set to false to effectively reload the page on update.
+     */
     handleUpdate(): void {
         console.log('userData:')
         console.log(this.userData);
@@ -94,6 +117,11 @@ export class ProfileViewComponent implements OnInit {
         });
     }
 
+    /**
+     * Removes given movie from current user's favorites, as determined by username in localStorage. 
+     * Uses fetch-api-data to delete.
+     * @param movieId - string type movieID from database entry
+     */
     removeFromFavorites(movieId: String): void {
         console.log(`deleting ${movieId}`);
         this.fetchApiData.deleteFromFavorites(movieId).subscribe((resp: any) => {
