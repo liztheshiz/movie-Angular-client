@@ -21,11 +21,13 @@ export class UserLoginFormComponent implements OnInit {
         public snackBar: MatSnackBar,
         public router: Router) { }
 
-    // Called when inputs recieve their data (from user)
+    // Called when inputs receive their data (from user)
     ngOnInit(): void {
     }
 
-    // Passes userData object into API
+    /**
+     * Posts userData object into API using fetch-api-data.
+     * */
     loginUser(): void {
         this.fetchApiData.userLogin(this.userData).subscribe((result) => {
             // Logic for a successful user login goes here! (To be implemented)
