@@ -24,7 +24,9 @@ export class UserRegistrationFormComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    // Passes userData object into API
+    /**
+     * Posts userData object into API using fetch-api-data.
+     * */
     registerUser(): void {
         // Changes birthday to right format MM/DD/YY before sending to API
         var newUser = this.userData;
