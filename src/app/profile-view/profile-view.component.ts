@@ -28,6 +28,11 @@ export class ProfileViewComponent implements OnInit {
         this.getFavorites();
     }
 
+    /** 
+     * Fetches user object from username saved in localStorage using fetch-api-data, and sets local 'user' variable to the resulting object.
+     * Also calls getDate() on user.Birthday (see getDate()).
+     * Returns 'user' variable.
+     */
     getUser(): void {
         this.fetchApiData.getUser().subscribe((resp: any) => {
             this.user = resp;
@@ -38,6 +43,10 @@ export class ProfileViewComponent implements OnInit {
         });
     }
 
+    /** 
+     * Fetches movies using fetch-api-data and sets local 'movies' variable to resulting array of movies objects.
+     * Returns 'movies' variable.
+    */
     getMovies(): void {
         this.fetchApiData.getAllMovies().subscribe((resp: any) => {
             this.movies = resp;
