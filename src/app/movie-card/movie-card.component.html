@@ -1,0 +1,33 @@
+<mat-toolbar color="primary"><span>MyFlix</span><span class="spacer"></span>
+    <button mat-button (click)="openMovieView()" color="secondary">Home</button>
+    <button mat-button (click)="openProfileView()" color="secondary">{{user}}</button>
+    <button mat-button (click)="logout()" color="secondary">Logout</button>
+</mat-toolbar>
+<mat-spinner class="spinner" *ngIf="movies.length<1"></mat-spinner>
+<div class="movie-view">
+    <mat-card class="movie-card" *ngFor="let movie of movies;">
+        <mat-card-header>
+            <mat-card-title>{{movie.Title}}</mat-card-title>
+            <mat-card-subtitle>Directed by: <button mat-button (click)="openDirectorView(movie.Director)"
+                    color="primary">{{movie.Director.Name}}</button>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <img class="movie-poster" src={{movie.ImagePath}} alt={{movie.Title}} />
+        <mat-card-actions>
+            <button mat-button (click)="openGenreView(movie.Genre)" color="primary">
+                Genre
+            </button>
+            <button mat-button (click)="openSynopsisView(movie)" color="primary">
+                Synopsis
+            </button>
+            <button class="favorite" mat-button *ngIf="!isFavorite(movie._id)" (click)="addToFavorites(movie._id)"
+                color="primary">
+                <mat-icon>favorite_border</mat-icon>
+            </button>
+            <button class="favorite" mat-button *ngIf="isFavorite(movie._id)" (click)="removeFromFavorites(movie._id)"
+                color="primary">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

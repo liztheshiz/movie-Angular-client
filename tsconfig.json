@@ -1,32 +1,48 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2020",
-    "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2020",
+        "module": "es2020",
+        "lib": [
+            "es2020",
+            "dom"
+        ]
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    },
+    "typedocOptions": {
+        "entryPoints": [
+            "src/app/fetch-api-data.service.ts",
+            "src/app/director-view/director-view.component.ts",
+            "src/app/profile-view/profile-view.component.ts",
+            "src/app/genre-view/genre-view.component.ts",
+            "src/app/movie-card/movie-card.component.ts",
+            "src/app/synopsis-view/synopsis-view.component.ts",
+            "src/app/user-login-form/user-login-form.component.ts",
+            "src/app/user-registration-form/user-registration-form.component.ts",
+            "src/app/welcome-page/welcome-page.component.ts"
+        ],
+        "out": "docs"
+    }
 }
+// copy next line into cli to generate doc!
+// npx typedoc src/app/fetch-api-data.service.ts src/app/director-view/director-view.component.ts src/app/profile-view/profile-view.component.ts src/app/genre-view/genre-view.component.ts src/app/movie-card/movie-card.component.ts src/app/synopsis-view/synopsis-view.component.ts src/app/user-login-form/user-login-form.component.ts src/app/user-registration-form/user-registration-form.component.ts src/app/welcome-page/welcome-page.component.ts

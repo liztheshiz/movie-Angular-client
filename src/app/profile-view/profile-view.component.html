@@ -1,0 +1,71 @@
+<mat-toolbar color="primary"><span>MyFlix</span><span class="spacer"></span>
+    <button mat-button (click)="openMovieView()" color="secondary">Home</button>
+    <button mat-button (click)="openProfileView()" color="secondary">{{user.Username}}</button>
+    <button mat-button (click)="logout()" color="secondary">Logout</button>
+</mat-toolbar>
+<div class="profile-view">
+    <h1>{{user.Username}}'s Profile</h1>
+    <h2 *ngIf="editMode">Edit user details below</h2>
+    <form *ngIf="!editMode" class="form">
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="userData.Username" placeholder="{{this.user.Username}}" type="text"
+                name="Username" disabled>
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Hidden" name="Password"
+                disabled>
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="userData.Email" type="email" placeholder="{{this.user.Email}}" name="Email"
+                disabled>
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Birthday</mat-label>
+            <input *ngIf="!user.Birthday" matInput placeholder="None" name="Birthday" disabled>
+            <input matInput [(ngModel)]="userData.Birthday" placeholder="{{this.birthday}}" name="Birthday" disabled>
+        </mat-form-field>
+    </form>
+    <form *ngIf="editMode" class="form">
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="userData.Username" placeholder="{{this.user.Username}}" type="text"
+                name="Username">
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Hidden" name="Password">
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="userData.Email" type="email" placeholder="{{this.user.Email}}" name="Email">
+        </mat-form-field>
+        <mat-form-field class="form__field" floatLabel="always">
+            <mat-label>Birthday</mat-label>
+            <input matInput [(ngModel)]="userData.Birthday" type="text" placeholder="{{this.birthday}}" name="Birthday"
+                onfocus="(this.type='date')">
+        </mat-form-field>
+    </form>
+    <button *ngIf="!editMode" mat-raised-button (click)="toggleEditMode()" color="primary">
+        Edit user details
+    </button>
+    <button class="cancel-button" *ngIf="editMode" mat-raised-button (click)="toggleEditMode()" color="secondary">
+        Cancel
+    </button>
+    <button *ngIf="editMode" mat-raised-button (click)="handleUpdate()" color="primary">
+        Update
+    </button>
+    <div class="fav-movies">
+        <h2>Favorite Films:</h2>
+        <div *ngFor="let movie of movies;">
+            <div class="fav-movies__movie" *ngIf="favMovies.includes(movie._id)">
+                <h3>{{movie.Title}}</h3>
+                <button class="favorite" mat-button (click)="removeFromFavorites(movie._id)" color="primary">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
