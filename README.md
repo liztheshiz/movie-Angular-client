@@ -10,6 +10,10 @@ MyFlix is an alternate version of [Cinema.Database](https://github.com/liztheshi
 
 MyFlix was built to gain practice developing with Angular, and utilize Angular Material to implement simple and consistent design.
 
+## API
+
+This app uses the [Cinema.Database API](https://cinemadatabase.herokuapp.com/). View the GitHub repo [here](https://github.com/liztheshiz/movie-api).
+
 ## Development server/Run locally
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
