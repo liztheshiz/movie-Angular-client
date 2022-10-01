@@ -1,8 +1,16 @@
-# MovieAngularClient
+# MyFlix (Angular Cinema.Database App)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
 
-## Development server
+## Description
+
+MyFlix is an alternate version of [Cinema.Database](https://github.com/liztheshiz/movie-client) built using Angular, rather than the original's React. Like the orginal app, MyFlix houses a small collection of films; their title, director, genre, and synopsis; and allows users to register and curate a list of their own favorites.
+
+## Purpose of this App
+
+MyFlix was built to gain practice developing with Angular, and utilize Angular Material to implement simple and consistent design.
+
+## Development server/Run locally
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
